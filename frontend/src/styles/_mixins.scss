@@ -1,0 +1,247 @@
+// Responsive Mixins
+@mixin mobile {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-md}) and (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin mobile-and-tablet {
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-and-desktop {
+  @media (min-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+// Container Mixins
+@mixin container {
+  max-width: $container-xl;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+@mixin container-sm {
+  max-width: $container-sm;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+@mixin container-md {
+  max-width: $container-md;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  
+  @include mobile {
+    padding: 0 $spacing-sm;
+  }
+}
+
+// Flexbox Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Button Mixins
+@mixin button-base {
+  border: none;
+  border-radius: $border-radius-2xl;
+  padding: $spacing-sm $spacing-xl;
+  font-size: 1em;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: all $transition-normal;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  text-align: center;
+  box-shadow: $button-shadow;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(107,70,193,0.20);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $accent-color;
+  color: $white;
+  
+  &:hover {
+    background: darken($accent-color, 10%);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: $light-gray;
+  color: $primary-color;
+  
+  &:hover {
+    background: lighten($primary-color, 44%);
+  }
+}
+
+// Card Mixins
+@mixin card-base {
+  background: $white;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  padding: $spacing-xl;
+  
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+@mixin card-hover {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(37, 9, 77, 0.25);
+  }
+}
+
+// Input Mixins
+@mixin input-base {
+  border: none;
+  border-radius: $border-radius-md;
+  padding: $spacing-sm;
+  font-size: 1.1em;
+  background: $light-gray;
+  transition: box-shadow $transition-fast;
+  box-shadow: $input-shadow;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px $primary-color;
+  }
+}
+
+// Typography Mixins
+@mixin heading-1 {
+  font-size: 2.8em;
+  font-weight: $font-weight-bold;
+  letter-spacing: -1px;
+  
+  @include mobile {
+    font-size: 2em;
+  }
+  
+  @include tablet {
+    font-size: 2.4em;
+  }
+}
+
+@mixin heading-2 {
+  font-size: 2em;
+  font-weight: $font-weight-bold;
+  
+  @include mobile {
+    font-size: 1.3em;
+  }
+  
+  @include tablet {
+    font-size: 1.7em;
+  }
+}
+
+@mixin heading-3 {
+  font-size: 1.5em;
+  font-weight: $font-weight-semibold;
+  
+  @include mobile {
+    font-size: 1.2em;
+  }
+}
+
+// Animation Mixins
+@mixin fade-in-up {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+// Grid Mixins
+@mixin grid-responsive($columns: 3, $gap: $spacing-lg) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+  
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+  
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Text Mixins
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-multiline-truncate($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+} 

@@ -1,0 +1,158 @@
+@import '../variables';
+@import '../mixins';
+
+.preview {
+  @include card-base;
+  @include card-hover;
+  @include fade-in-up;
+  max-width: 600px;
+  margin: $spacing-xl auto;
+  @include flex-column-center;
+  gap: $spacing-lg;
+
+  @include mobile {
+    max-width: 100%;
+    margin: $spacing-lg auto;
+    gap: $spacing-md;
+  }
+
+  .preview-title {
+    @include heading-3;
+    color: $primary-color;
+    margin-bottom: $spacing-sm;
+    text-align: center;
+  }
+
+  .video-player-section {
+    width: 100%;
+    margin-bottom: $spacing-md;
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      border-radius: $border-radius-md;
+      overflow: hidden;
+
+      .video-player {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: $border-radius-md;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: #000;
+        display: block;
+
+        @include mobile {
+          max-height: 300px;
+        }
+
+        &::-webkit-media-controls {
+          background: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
+
+  .video-info {
+    width: 100%;
+    text-align: center;
+
+    .thumbnail {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: $border-radius-md;
+      margin-bottom: $spacing-md;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+      @include mobile {
+        max-width: 100%;
+      }
+    }
+
+    .video-details {
+      margin-bottom: $spacing-lg;
+
+      .title {
+        font-size: 1.1em;
+        font-weight: $font-weight-semibold;
+        color: $primary-color;
+        margin-bottom: $spacing-sm;
+        @include text-multiline-truncate(2);
+
+        @include mobile {
+          font-size: 1em;
+        }
+      }
+
+      .uploader {
+        color: $gray;
+        font-size: 0.9em;
+        margin-bottom: $spacing-sm;
+      }
+
+      .duration {
+        color: $gray;
+        font-size: 0.9em;
+        margin-bottom: $spacing-sm;
+      }
+
+      .platform {
+        display: inline-block;
+        background: $accent-color;
+        color: $white;
+        padding: $spacing-xs $spacing-sm;
+        border-radius: $border-radius-sm;
+        font-size: 0.8em;
+        font-weight: $font-weight-medium;
+        margin-bottom: $spacing-md;
+      }
+    }
+  }
+
+  .download-options {
+    @include flex-center;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+    margin-bottom: $spacing-sm;
+
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-sm;
+      width: 100%;
+    }
+
+    button {
+      @include button-base;
+      min-width: 140px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      @include mobile {
+        width: 100%;
+        max-width: 200px;
+      }
+
+      &.primary {
+        @include button-primary;
+      }
+
+      &.secondary {
+        @include button-secondary;
+      }
+    }
+  }
+
+  .download-info {
+    color: $gray;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: $spacing-sm;
+
+    @include mobile {
+      font-size: 0.8em;
+    }
+  }
+}

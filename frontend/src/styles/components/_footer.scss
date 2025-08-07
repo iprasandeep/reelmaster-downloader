@@ -1,0 +1,78 @@
+@import '../variables';
+@import '../mixins';
+
+.footer {
+  margin-top: $spacing-3xl;
+  padding: $spacing-xl 0;
+  font-size: 0.95em;
+  color: $gray;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  @include mobile {
+    margin-top: $spacing-2xl;
+    padding: $spacing-lg 0;
+    font-size: 0.8em;
+  }
+  
+  .footer-content {
+    @include container;
+    @include flex-column-center;
+    gap: $spacing-md;
+    
+    .footer-text {
+      line-height: 1.5;
+      
+      @include mobile {
+        line-height: 1.4;
+      }
+    }
+    
+    .footer-links {
+      @include flex-center;
+      gap: $spacing-lg;
+      flex-wrap: wrap;
+      
+      @include mobile {
+        gap: $spacing-md;
+        @include flex-column;
+      }
+      
+      a {
+        color: $light-gray;
+        text-decoration: none;
+        transition: color $transition-fast;
+        
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+    
+    .footer-social {
+      @include flex-center;
+      gap: $spacing-md;
+      margin-top: $spacing-sm;
+      
+      @include mobile {
+        gap: $spacing-sm;
+      }
+      
+      a {
+        color: $light-gray;
+        font-size: 1.2em;
+        transition: color $transition-fast;
+        
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+  }
+  
+  // Footer with gradient background
+  &.footer-gradient {
+    background: linear-gradient(135deg, rgba(107, 70, 193, 0.1) 0%, rgba(145, 79, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+  }
+} 

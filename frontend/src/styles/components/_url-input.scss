@@ -1,0 +1,116 @@
+@import '../variables';
+@import '../mixins';
+
+.url-input {
+  @include card-base;
+  @include card-hover;
+  max-width: 600px;
+  margin: 0 auto $spacing-xl;
+  @include flex-column-center;
+  gap: $spacing-lg;
+  
+  @include mobile {
+    max-width: 100%;
+    margin: 0 auto $spacing-lg;
+    gap: $spacing-md;
+  }
+  
+  .input-row {
+    @include flex-center;
+    width: 100%;
+    gap: $spacing-sm;
+    
+    @include mobile {
+      @include flex-column;
+      gap: $spacing-sm;
+    }
+    
+    input {
+      @include input-base;
+      width: 330px;
+      padding: $spacing-sm;
+      font-size: 1.1em;
+      
+      @include mobile {
+        width: 100%;
+        min-width: 0;
+        font-size: 1em;
+      }
+      
+      @include tablet {
+        width: 280px;
+      }
+      
+      &::placeholder {
+        color: $gray;
+        opacity: 0.8;
+      }
+    }
+    
+    button {
+      @include button-primary;
+      padding: $spacing-sm $spacing-xl;
+      font-size: 1.1em;
+      
+      @include mobile {
+        width: 100%;
+        padding: $spacing-sm $spacing-lg;
+        font-size: 1em;
+      }
+    }
+  }
+  
+  small {
+    color: $gray;
+    font-size: 0.9em;
+    text-align: center;
+    
+    @include mobile {
+      font-size: 0.8em;
+    }
+  }
+}
+
+// Error message styling
+.error-message {
+  background: rgba($error-color, 0.1);
+  border: 1px solid rgba($error-color, 0.3);
+  border-radius: $border-radius-sm;
+  padding: $spacing-sm $spacing-md;
+  margin: $spacing-sm 0;
+  color: $error-color;
+  font-size: 0.9em;
+  text-align: center;
+  
+  @include mobile {
+    font-size: 0.8em;
+    padding: $spacing-xs $spacing-sm;
+  }
+}
+
+// Loading state
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  
+  button {
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid $white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      right: $spacing-sm;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} 

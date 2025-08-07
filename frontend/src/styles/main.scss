@@ -1,0 +1,332 @@
+// Import variables and mixins
+@import 'variables';
+@import 'mixins';
+
+// Import component styles
+@import 'components/header';
+@import 'components/url-input';
+@import 'components/preview';
+@import 'components/steps';
+@import 'components/features';
+@import 'components/supported-platforms';
+@import 'components/faq';
+@import 'components/footer';
+
+// Base Styles
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: $primary-gradient;
+  font-family: $font-family;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Container
+.container {
+  @include container;
+  padding: $spacing-2xl $spacing-md $spacing-lg;
+  text-align: center;
+  
+  @include mobile {
+    padding: $spacing-lg $spacing-sm $spacing-md;
+  }
+}
+
+// Main card wrapper
+.main-card {
+  @include card-base;
+  @include card-hover;
+  max-width: 600px;
+  margin: 0 auto $spacing-xl;
+  @include flex-column-center;
+  gap: $spacing-lg;
+  
+  @include mobile {
+    max-width: 100%;
+    margin: 0 auto $spacing-lg;
+    gap: $spacing-md;
+  }
+}
+
+// Tab bar styling
+.tabbar {
+  background: rgba(255, 255, 255, 0.22);
+  max-width: 700px;
+  margin: $spacing-2xl auto $spacing-sm;
+  border-radius: $border-radius-3xl;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  backdrop-filter: blur(10px);
+  
+  @include mobile {
+    max-width: 100%;
+    margin: $spacing-xl auto $spacing-sm;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: $spacing-sm 0;
+    font-size: 1.1em;
+    color: $white;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.22em;
+    transition: color $transition-fast;
+    cursor: pointer;
+    
+    @include mobile {
+      font-size: 1em;
+      padding: $spacing-sm 0;
+    }
+    
+    &:not(:last-child) {
+      border-right: 1.5px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    &.active {
+      background: $white;
+      color: $primary-color;
+    }
+    
+    &:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// Download section
+.download-section {
+  @include flex-center;
+  margin: $spacing-2xl 0;
+  width: 100%;
+  
+  @include mobile {
+    margin: $spacing-xl 0;
+  }
+  
+  .download-card {
+    @include card-base;
+    @include card-hover;
+    @include fade-in-up;
+    @include flex-column-center;
+    max-width: 420px;
+    width: 100%;
+    gap: $spacing-lg;
+    
+    @include mobile {
+      max-width: 100%;
+      gap: $spacing-md;
+    }
+    
+    .download-title {
+      @include heading-3;
+      color: $primary-color;
+      margin-bottom: $spacing-sm;
+      text-align: center;
+    }
+    
+    .download-options {
+      @include flex-center;
+      gap: $spacing-md;
+      margin-bottom: $spacing-sm;
+      flex-wrap: wrap;
+      
+      @include mobile {
+        @include flex-column;
+        gap: $spacing-sm;
+        width: 100%;
+      }
+      
+      button,
+      a {
+        @include button-base;
+        min-width: 110px;
+        
+        @include mobile {
+          width: 100%;
+          max-width: 170px;
+        }
+        
+        &.primary {
+          @include button-primary;
+        }
+        
+        &.secondary {
+          @include button-secondary;
+        }
+      }
+    }
+    
+    .download-info {
+      color: $gray;
+      font-size: 1em;
+      text-align: center;
+      margin-top: $spacing-sm;
+      
+      @include mobile {
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+// Utility classes
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: $spacing-xs; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.mb-3 { margin-bottom: $spacing-md; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.mb-5 { margin-bottom: $spacing-xl; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: $spacing-xs; }
+.mt-2 { margin-top: $spacing-sm; }
+.mt-3 { margin-top: $spacing-md; }
+.mt-4 { margin-top: $spacing-lg; }
+.mt-5 { margin-top: $spacing-xl; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: $spacing-xs; }
+.p-2 { padding: $spacing-sm; }
+.p-3 { padding: $spacing-md; }
+.p-4 { padding: $spacing-lg; }
+.p-5 { padding: $spacing-xl; }
+
+// Responsive utilities
+.hidden-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+.hidden-desktop {
+  @include tablet-and-desktop {
+    display: none !important;
+  }
+}
+
+.visible-mobile {
+  @include tablet-and-desktop {
+    display: none !important;
+  }
+}
+
+.visible-desktop {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+// Loading states
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Focus styles for accessibility
+*:focus {
+  outline: 2px solid $accent-color;
+  outline-offset: 2px;
+}
+
+// Print styles
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  
+  .main-card,
+  .download-card,
+  .feature-card,
+  .step,
+  .platform,
+  .faq-section {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}

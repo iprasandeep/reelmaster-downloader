@@ -1,0 +1,164 @@
+@import '../variables';
+@import '../mixins';
+
+.supported-platforms {
+  margin: $spacing-3xl auto;
+  text-align: center;
+  
+  @include mobile {
+    margin: $spacing-2xl auto;
+  }
+  
+  h2 {
+    @include heading-2;
+    margin-bottom: $spacing-lg;
+    color: $white;
+    
+    @include mobile {
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  .platform-row {
+    @include grid-responsive(3, $spacing-md);
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    
+    @include mobile {
+      gap: $spacing-sm;
+    }
+  }
+  
+  .platform {
+    @include card-base;
+    @include card-hover;
+    @include flex-column-center;
+    background: $secondary-color;
+    color: $white;
+    min-width: 200px;
+    max-width: 240px;
+    margin: 0 auto $spacing-md;
+    position: relative;
+    overflow: hidden;
+    
+    @include mobile {
+      min-width: 0;
+      width: 100%;
+      max-width: none;
+    }
+    
+    // Platform-specific gradients
+    &.instagram {
+      background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%);
+    }
+    
+    &.youtube {
+      background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+    }
+    
+    &.pinterest {
+      background: linear-gradient(135deg, #E60023 0%, #BD081C 100%);
+    }
+    
+    &.tiktok {
+      background: linear-gradient(135deg, #000000 0%, #25F4EE 50%, #FE2C55 100%);
+    }
+    
+    &.facebook {
+      background: linear-gradient(135deg, #1877F2 0%, #0D6EFD 100%);
+    }
+    
+    &.twitter {
+      background: linear-gradient(135deg, #1DA1F2 0%, #0D8BD9 100%);
+    }
+    
+    .icon {
+      font-size: 2.1em;
+      margin-bottom: $spacing-sm;
+      display: block;
+      
+      @include mobile {
+        font-size: 1.8em;
+      }
+    }
+    
+    b {
+      color: lighten($white, 7%);
+      font-weight: $font-weight-semibold;
+      font-size: 1.1em;
+      margin-bottom: $spacing-sm;
+      display: block;
+      
+      @include mobile {
+        font-size: 1em;
+      }
+    }
+    
+    p {
+      font-size: 1em;
+      margin: 0;
+      color: $white;
+      line-height: 1.4;
+      
+      @include mobile {
+        font-size: 0.9em;
+      }
+    }
+    
+    .options {
+      @include flex-center;
+      gap: $spacing-xs;
+      margin-top: $spacing-sm;
+      flex-wrap: wrap;
+      
+      @include mobile {
+        gap: $spacing-xs;
+      }
+      
+      span {
+        padding: $spacing-xs $spacing-sm;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: $border-radius-sm;
+        color: $white;
+        font-weight: $font-weight-semibold;
+        font-size: 0.96em;
+        
+        @include mobile {
+          font-size: 0.85em;
+          padding: $spacing-xs $spacing-sm;
+        }
+      }
+    }
+    
+    // Platform badge
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 20px 20px 0;
+      border-color: transparent rgba(255, 255, 255, 0.2) transparent transparent;
+      
+      @include mobile {
+        border-width: 0 15px 15px 0;
+      }
+    }
+  }
+}
+
+// Platform grid variations
+@include mobile {
+  .supported-platforms {
+    .platform-row {
+      grid-template-columns: repeat(2, 1fr);
+      
+      @media (max-width: $breakpoint-xs) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+} 

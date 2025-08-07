@@ -1,0 +1,115 @@
+@import '../variables';
+@import '../mixins';
+
+.features {
+  @include grid-responsive(3, $spacing-lg);
+  margin: $spacing-2xl auto;
+  max-width: 900px;
+  
+  @include mobile {
+    margin: $spacing-xl auto;
+    gap: $spacing-md;
+  }
+  
+  .feature-card {
+    @include card-base;
+    @include card-hover;
+    @include flex-column-center;
+    text-align: center;
+    color: $primary-color;
+    min-width: 240px;
+    position: relative;
+    overflow: hidden;
+    
+    @include mobile {
+      min-width: 0;
+      width: 100%;
+    }
+    
+    // Gradient background overlay
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: $primary-gradient;
+      opacity: 0;
+      transition: opacity $transition-normal;
+    }
+    
+    &:hover::before {
+      opacity: 1;
+    }
+    
+    .icon {
+      font-size: 2em;
+      margin-bottom: $spacing-sm;
+      color: $accent-color;
+      display: block;
+      
+      @include mobile {
+        font-size: 1.6em;
+      }
+    }
+    
+    b {
+      color: $accent-color;
+      font-weight: $font-weight-semibold;
+      font-size: 1.04em;
+      margin-bottom: $spacing-sm;
+      display: block;
+      
+      @include mobile {
+        font-size: 1em;
+      }
+    }
+    
+    p {
+      font-size: 0.95em;
+      line-height: 1.5;
+      margin: 0;
+      color: $dark-gray;
+      
+      @include mobile {
+        font-size: 0.9em;
+      }
+    }
+    
+    // Feature highlight
+    &.highlight {
+      background: linear-gradient(135deg, $white 0%, #f8f7ff 100%);
+      border: 2px solid rgba($accent-color, 0.1);
+      
+      .icon {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+// Alternative layout for mobile
+@include mobile {
+  .features {
+    .feature-card {
+      text-align: left;
+      @include flex-column;
+      align-items: flex-start;
+      
+      .icon {
+        align-self: center;
+        margin-bottom: $spacing-md;
+      }
+      
+      b {
+        align-self: center;
+        text-align: center;
+      }
+      
+      p {
+        text-align: center;
+      }
+    }
+  }
+} 

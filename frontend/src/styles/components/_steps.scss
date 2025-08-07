@@ -1,0 +1,132 @@
+@import '../variables';
+@import '../mixins';
+
+.steps {
+  @include grid-responsive(3, $spacing-lg);
+  margin: $spacing-2xl auto $spacing-3xl;
+  max-width: 900px;
+  
+  @include mobile {
+    margin: $spacing-xl auto $spacing-2xl;
+    gap: $spacing-md;
+  }
+  
+  .step {
+    @include card-base;
+    @include card-hover;
+    @include flex-column-center;
+    text-align: center;
+    color: $primary-color;
+    min-width: 220px;
+    position: relative;
+    
+    @include mobile {
+      min-width: 0;
+      width: 100%;
+    }
+    
+    .icon {
+      font-size: 2.2em;
+      color: $accent-color;
+      margin-bottom: $spacing-sm;
+      display: block;
+      
+      @include mobile {
+        font-size: 1.8em;
+      }
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $accent-color;
+      color: $white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      @include flex-center;
+      font-weight: $font-weight-bold;
+      font-size: 0.9em;
+      box-shadow: 0 2px 8px rgba(107,70,193,0.3);
+      
+      @include mobile {
+        width: 25px;
+        height: 25px;
+        font-size: 0.8em;
+      }
+    }
+    
+    b {
+      font-size: 1.09em;
+      color: $accent-color;
+      font-weight: $font-weight-semibold;
+      margin-bottom: $spacing-sm;
+      display: block;
+      
+      @include mobile {
+        font-size: 1em;
+      }
+    }
+    
+    p {
+      margin: 0;
+      font-size: 0.98em;
+      color: $primary-color;
+      line-height: 1.5;
+      
+      @include mobile {
+        font-size: 0.9em;
+      }
+    }
+    
+    // Step connector lines
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -$spacing-lg;
+      width: $spacing-lg;
+      height: 2px;
+      background: linear-gradient(90deg, $accent-color, transparent);
+      
+      @include mobile {
+        display: none;
+      }
+      
+      @include tablet {
+        right: -$spacing-md;
+        width: $spacing-md;
+      }
+    }
+    
+    &:last-child::after {
+      display: none;
+    }
+  }
+}
+
+// Alternative mobile layout with vertical steps
+@include mobile {
+  .steps {
+    .step {
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: -$spacing-md;
+        width: 2px;
+        height: $spacing-md;
+        background: linear-gradient(180deg, transparent, $accent-color);
+        transform: translateX(-50%);
+      }
+      
+      &:first-child::before {
+        display: none;
+      }
+    }
+  }
+} 
